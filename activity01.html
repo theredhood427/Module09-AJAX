@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity 01 - MOD09</title>
+    <style>
+        table, th, td{
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding:10px;
+        }
+
+        table tr:nth-child(odd){
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even){
+            background-color: #ffff;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <h1>Angular JS AJAX Application</h1>
+    <div ng-app="" ng-controller="employeeController">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Salary</th>
+            </tr>
+            <tr ng-repeat ="employee in employees">
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.age}}</td>
+                <td>{{employee.salary}}</td>
+            </tr>
+        </table>
+        <script>
+            function employeeController($scope, $http){
+                var url = "http://localhost/mod09/api_r.php";
+                //var url = "employee.txt";
+
+                $http.get(url).success(function(response){
+                    $scope.employees = response;
+                });
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    </div>
+    
+</body>
+</html>
